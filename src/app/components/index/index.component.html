@@ -1,0 +1,21 @@
+<div class="gptContainer mt-3">
+    <h3>Ask Me Anything</h3>
+    <div class="mt-3">
+        <input type="text" [(ngModel)]="question">
+        <button (click)="getQuestion()" [disabled]="loading">Ask !</button>
+        <div>Question : {{question}}</div>
+    </div>
+    <div class="mt-3">
+        <div *ngIf="loading">
+            <div class="spinner-border"  role="status"></div>
+        </div>
+        <div *ngIf="!loading && chatHistoryArray.length>0">
+            Answer : {{answer}}
+        </div>
+    </div>
+    <div class="historyDiv">
+        <div *ngFor="let chat of chatHistoryArray">
+            <app-chathistory [chatHistory]="chat"></app-chathistory>
+        </div>     
+    </div>
+</div>
