@@ -1,0 +1,15 @@
+
+<div>
+    Image Creator
+    <input type="text" [(ngModel)]="imageSentence">
+    <button (click)="createImage()" [disabled]="loading">Creat</button>
+</div>
+
+<div *ngIf="loading">
+    <div class="spinner-border"  role="status"></div>
+</div>
+<div *ngIf="!loading">
+    <img [src]="imageUrl">
+</div>
+
+

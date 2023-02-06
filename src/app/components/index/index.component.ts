@@ -11,7 +11,7 @@ import { ChatService } from 'src/app/services/chat.service';
 export class IndexComponent {
 
   constructor(private chatService : ChatService ) { }
-  //butonu disabled yap
+
   question : string;
   loading : boolean = false;
   answer : string;
@@ -21,7 +21,21 @@ export class IndexComponent {
 
   ngOnInit(): void {}
 
+
   getQuestion() {
+    this.loading = true
+    //console.log(this.question);
+    return this.chatService.getAnswerPromise(this.question).then(
+      response => {
+        this.responseFromApi = response;
+        //console.log(this.responseFromApi);
+        this.loading = false;
+        this.answer = this.responseFromApi.choices[0].text;
+        this.chatHistoryArray.unshift({answer:this.answer,question:this.question});
+      });
+  } 
+
+  /* getQuestion() {
     this.loading = true
     //console.log(this.question);
     return this.chatService.getAnswer(this.question).subscribe(response => {
@@ -31,12 +45,5 @@ export class IndexComponent {
       this.answer = this.responseFromApi.choices[0].text;
       this.collectChatHistory();
     });
-  }
-
-  collectChatHistory(){
-    //console.log(this.answer);
-    //console.log(this.question);
-    this.chatHistoryArray.unshift({answer:this.answer,question:this.question});
-  }
-
+  } */
 }

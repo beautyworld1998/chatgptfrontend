@@ -9,8 +9,11 @@
         <div *ngIf="loading">
             <div class="spinner-border"  role="status"></div>
         </div>
-        <div *ngIf="!loading && chatHistoryArray.length>0">
-            Answer : {{answer}}
+        <div *ngIf="!loading && chatHistoryArray.length>0" class="answer">
+            <p>
+                Answer : 
+                {{answer}}
+            </p>
         </div>
     </div>
     <div class="historyDiv">
